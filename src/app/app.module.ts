@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FishPageComponent } from './pages/fish-page/fish-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CompetitionPageComponent } from './pages/competition-page/competition-page.component';
@@ -17,21 +16,31 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
+import { PaginatorModule } from 'primeng/paginator';
+
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { CardCompetitionComponent } from './components/card-competition/card-competition.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     FishPageComponent,
     CompetitionPageComponent,
     ModalComponent,
     CompetitionFormComponent,
+    NavbarComponent,
+    HomepageComponent,
+    CardCompetitionComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    PaginatorModule,
     ReactiveFormsModule,
     TableModule,
     CardModule,

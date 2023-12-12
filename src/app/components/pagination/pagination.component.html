@@ -1,0 +1,4 @@
+<div class="card flex w-full  py-5 justify-center">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="pagination.totalElements"
+        [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+</div>

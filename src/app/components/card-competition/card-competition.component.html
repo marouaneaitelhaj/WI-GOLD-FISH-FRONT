@@ -1,0 +1,29 @@
+<div class="lg:flex shadow">
+    <div class="bg-teal-600 rounded-l lg:w-2/12 py-4 block h-full shadow-inner">
+        <div class="text-center tracking-wide">
+            <div class="text-white font-bold text-4xl">{{ competition.date.getDay() }}</div>
+            <div class="text-white font-normal text-2xl">{{ competition.date.toLocaleString('en-US', { month: 'short' }) }}</div>
+        </div>
+    </div>
+    <div class="w-full rounded-r  lg:w-11/12 xl:w-full px-1 bg-teal-100 py-5 lg:px-2 lg:py-2 tracking-wide">
+        <div class="flex flex-row lg:justify-start justify-center">
+            <div class="text-gray-700 font-medium text-sm text-center lg:text-left px-2">
+                <i class="far fa-clock"></i> {{competition.startTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })}}
+            </div>
+            <div class="text-gray-700 font-medium text-sm text-center lg:text-left px-2">
+                <i class="far fa-clock"></i> {{competition.endTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })}}
+            </div>
+        </div>
+        <div class="font-semibold text-gray-800 text-xl text-center lg:text-left px-2">
+            {{competition.code}}
+        </div>
+
+        <div class="text-gray-600 font-medium text-sm pt-1 text-center lg:text-left px-2">
+            Location : {{competition.location}}, Number of Participants : {{competition.numberOfParticipants}}
+        </div>
+    </div>
+    <div class="flex flex-row items-center w-full lg:w-1/3 bg-teal-100 lg:justify-end justify-center px-2 py-4 lg:px-0">
+        <span class="tracking-wider pi pi-angle-down cursor-pointer px-2 text-sm rounded leading-loose mx-2 font-semibold">
+        </span>
+    </div>
+</div>

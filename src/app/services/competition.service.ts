@@ -13,10 +13,12 @@ export class CompetitionService {
   }
   public url = 'http://localhost:8080/competition';
   public competitions = new BehaviorSubject<Competition[]>([]);
+  public pagination = new BehaviorSubject<MyResponse<Competition>>({} as MyResponse<Competition>);
   public findAll(): void {
     this.http.get<MyResponse<Competition>>(this.url).subscribe(
       (response) => {
         this.competitions.next(response.content);
+        this.pagination.next(response);
       }
     );
   }

@@ -1,3 +1,5 @@
+import Hunting from "./Hunting";
+
 export default interface Competition {
     code : string;
     date : Date;
@@ -6,4 +8,5 @@ export default interface Competition {
     numberOfParticipants : number;
     location : string;
     amount : number;
+    huntings : Hunting[];
 }

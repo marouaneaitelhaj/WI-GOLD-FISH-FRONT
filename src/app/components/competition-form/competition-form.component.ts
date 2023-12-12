@@ -39,12 +39,11 @@ export class CompetitionFormComponent {
   onSubmit() {
     if (this.competitionForm.valid) {
       const competition = this.competitionForm.value as Competition;
-      // code @Pattern(regexp = "[a-z]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}")
       const date = new Date(competition.date);
       const year = date.getFullYear();
       const month = date.getMonth() > 9 ? date.getMonth() : '0' + date.getMonth();
       const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-      const code = competition.location.toLowerCase().substring(0, 3) + '-' + day + '-' + month+ '-' + year.toString().substring(2);
+      const code = competition.location.toLowerCase().replace(' ', '').substring(0, 3) + '-' + day + '-' + month+ '-' + year.toString().substring(2);
       competition.code = code;
       this.competitionService.save(competition)
     }

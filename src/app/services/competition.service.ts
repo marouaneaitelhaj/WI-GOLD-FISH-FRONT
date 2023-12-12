@@ -26,7 +26,7 @@ export class CompetitionService {
   public save(competition: Competition): void {
     this.http.post<MyResponse<Competition>>(this.url, competition).subscribe(
       (response) => {
-        this.competitions.next(this.competitions.getValue().concat(response.content));
+        this.competitions.next(this.competitions.getValue().concat(response.data));
         this.alertService.showMsg('Competition saved successfully');
       }
     );

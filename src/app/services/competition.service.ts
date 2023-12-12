@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import Competition from '../model/Competition';
 import { MyResponse } from '../model/MyResponse';
+import { PopUpService } from '../components/pop-up-message/popUpService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompetitionService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private alertService: PopUpService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/competition';
@@ -23,8 +24,11 @@ export class CompetitionService {
     );
   }
   public save(competition: Competition): void {
-    this.http.post(this.url, competition).subscribe((data: any) => {
-      this.findAll();
-    });
+    this.http.post<MyResponse<Competition>>(this.url, competition).subscribe(
+      (response) => {
+        this.competitions.next(this.competitions.getValue().concat(response.content));
+        this.alertService.showMsg('Competition saved successfully');
+      }
+    );
   }
 }

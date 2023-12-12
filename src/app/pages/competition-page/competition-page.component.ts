@@ -20,4 +20,5 @@ export class CompetitionPageComponent {
       this.pagination = data;
     });
   }
+  visible: boolean = false;
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Competition from 'src/app/model/Competition';
+import { CompetitionService } from 'src/app/services/competition.service';
 
 @Component({
   selector: 'app-competition-form',
@@ -8,18 +9,50 @@ import Competition from 'src/app/model/Competition';
   styleUrls: ['./competition-form.component.css']
 })
 export class CompetitionFormComponent {
+  competitionForm: FormGroup;
   @Input() competition: Competition = {} as Competition;
-  constructor(private fb: FormBuilder) { }
-  competitionForm = this.fb.group({
-    code: [this.competition?.code, Validators.required],
-    date: [this.competition?.date, Validators.required],
-    startTime: [this.competition?.startTime, Validators.required],
-    endTime: [this.competition?.endTime, Validators.required],
-    numberOfParticipants: [this.competition?.numberOfParticipants, Validators.required],
-    location: [this.competition?.location, Validators.required],
-    amount: [this.competition?.amount, Validators.required],
-  });
-  onSubmit() {
-    console.log(this.competitionForm.value);
+  constructor(private fb: FormBuilder, private competitionService: CompetitionService) {
+    this.competitionForm = this.fb.group({
+      date: [null, Validators.required],
+      startTime: [null, Validators.required],
+      endTime: [null, Validators.required],
+      numberOfParticipants: [null, Validators.required],
+      location: [null, Validators.required],
+      amount: [null, Validators.required],
+    }, {
+      validators: [this.timeRangeValidator]
+    });
   }
+
+  timeRangeValidator(competitionForm: FormGroup) {
+    const startTime = competitionForm.get('startTime')?.value;
+    const endTime = competitionForm.get('endTime')?.value;
+
+    if (startTime && endTime && startTime >= endTime) {
+      competitionForm.get('endTime')?.setErrors({ timeRange: true });
+    } else {
+      competitionForm.get('endTime')?.setErrors(null);
+    }
+  }
+
+
+  onSubmit() {
+    if (this.competitionForm.valid) {
+      const competition = this.competitionForm.value as Competition;
+      // code @Pattern(regexp = "[a-z]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}")
+      const date = new Date(competition.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() > 9 ? date.getMonth() : '0' + date.getMonth();
+      const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      const code = competition.location.toLowerCase().substring(0, 3) + '-' + day + '-' + month+ '-' + year.toString().substring(2);
+      competition.code = code;
+      this.competitionService.save(competition)
+    }
+  }
+  @Input() visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+  }
+  onSubmitForm() { }
 }

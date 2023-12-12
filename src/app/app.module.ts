@@ -17,12 +17,14 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { CardCompetitionComponent } from './components/card-competition/card-competition.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,12 +36,14 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     HomepageComponent,
     CardCompetitionComponent,
     PaginationComponent,
+    PopUpMessageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CalendarModule,
     PaginatorModule,
     ReactiveFormsModule,
     TableModule,

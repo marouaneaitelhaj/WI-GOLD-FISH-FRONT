@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MyResponse } from 'src/app/model/MyResponse';
+import { CompetitionService } from 'src/app/services/competition.service';
 interface PageEvent {
   first: number;
   rows: number;
@@ -12,11 +13,14 @@ interface PageEvent {
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
-  @Input() pagination : MyResponse<any> = {} as MyResponse<any>;
+  constructor(private competitionService: CompetitionService) {
+
+  }
+  @Input() pagination: MyResponse<any> = {} as MyResponse<any>;
   first: number = 0;
   rows: number = 10;
   onPageChange(event: any) {
     this.first = event.first;
-    this.rows = event.rows;
+    this.competitionService.findAll(this.rows, event.page);
   }
 }

@@ -24,6 +24,8 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { CardCompetitionComponent } from './components/card-competition/card-competition.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
+import { AddMemberComponent } from './components/add-member/add-member.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -37,10 +39,12 @@ import { PopUpMessageComponent } from './components/pop-up-message/pop-up-messag
     CardCompetitionComponent,
     PaginationComponent,
     PopUpMessageComponent,
+    AddMemberComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MultiSelectModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CalendarModule,

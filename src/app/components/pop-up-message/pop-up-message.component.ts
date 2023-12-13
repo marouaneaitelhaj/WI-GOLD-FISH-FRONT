@@ -18,7 +18,6 @@ export class PopUpMessageComponent {
     this.alertService.alertprops.subscribe(
       (alertprops) => {
         this.alertProps = alertprops;
-        console.log(this.alertProps);
       }
     );
   }

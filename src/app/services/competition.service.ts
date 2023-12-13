@@ -9,14 +9,14 @@ import { PopUpService } from '../components/pop-up-message/popUpService';
   providedIn: 'root'
 })
 export class CompetitionService {
-  constructor(private http: HttpClient,private alertService: PopUpService) {
+  constructor(private http: HttpClient, private alertService: PopUpService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/competition';
   public competitions = new BehaviorSubject<Competition[]>([]);
   public pagination = new BehaviorSubject<MyResponse<Competition>>({} as MyResponse<Competition>);
-  public findAll(): void {
-    this.http.get<MyResponse<Competition>>(this.url).subscribe(
+  public findAll(size = 10, page = 0): void {
+    this.http.get<MyResponse<Competition>>(this.url + '?page=' + page + '&size=' + size).subscribe(
       (response) => {
         this.competitions.next(response.content);
         this.pagination.next(response);
@@ -28,6 +28,9 @@ export class CompetitionService {
       (response) => {
         this.competitions.next(this.competitions.getValue().concat(response.data));
         this.alertService.showMsg('Competition saved successfully');
+      },
+      (error) => {
+        this.alertService.showMsg(error.error.message);
       }
     );
   }

@@ -1,4 +1,5 @@
-<span (click)="visible=!visible" class="pi pi-plus text-2xl p-3 fixed bottom-10 right-10 cursor-pointer my-3 bg-teal-500 rounded"></span>
+<span (click)="visible=!visible" class="pi z-50 pi-plus text-2xl p-3 fixed bottom-10 right-10 cursor-pointer my-3 bg-teal-500 rounded"></span>
 <app-card-competition *ngFor="let competition of competitions" [competition]="competition"></app-card-competition>
 <app-pagination [pagination]="pagination"></app-pagination>
 <app-competition-form [visible]="visible"></app-competition-form>
+<app-pop-up-message></app-pop-up-message>

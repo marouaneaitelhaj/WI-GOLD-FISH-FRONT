@@ -43,9 +43,11 @@ export class CompetitionFormComponent {
       const year = date.getFullYear();
       const month = date.getMonth() > 9 ? date.getMonth() : '0' + date.getMonth();
       const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-      const code = competition.location.toLowerCase().replace(' ', '').substring(0, 3) + '-' + day + '-' + month+ '-' + year.toString().substring(2);
+      const code = competition.location.toLowerCase().replace(' ', '').substring(0, 3) + '-' + day + '-' + month + '-' + year.toString().substring(2);
       competition.code = code;
       this.competitionService.save(competition)
+      this.competitionForm.reset();
+      this.visible = false;
     }
   }
   @Input() visible: boolean = false;
@@ -53,5 +55,4 @@ export class CompetitionFormComponent {
   showDialog() {
     this.visible = true;
   }
-  onSubmitForm() { }
 }

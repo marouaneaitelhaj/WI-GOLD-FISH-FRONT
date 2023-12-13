@@ -7,4 +7,6 @@ export default interface Ranking {
     score: number;
     member : Member;
     competition : Competition;
+    member_id : number;
+    competition_id : string;
 }

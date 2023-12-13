@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CompetitionService } from '../../services/competition.service';
 import Competition from 'src/app/model/Competition';
 import { MyResponse } from 'src/app/model/MyResponse';
+import AlertProps from 'src/app/components/alerts/AlertProps';
 @Component({
   selector: 'app-competition-page',
   templateUrl: './competition-page.component.html',

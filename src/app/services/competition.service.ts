@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import Competition from '../model/Competition';
 import { MyResponse } from '../model/MyResponse';
-import { PopUpService } from '../components/pop-up-message/popUpService';
+import { AlertService } from '../components/alerts/alert-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompetitionService {
-  constructor(private http: HttpClient, private alertService: PopUpService) {
+  constructor(private http: HttpClient, private alertService: AlertService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/competition';
@@ -28,6 +28,28 @@ export class CompetitionService {
       (response) => {
         this.competitions.next(this.competitions.getValue().concat(response.data));
         this.alertService.showMsg('Competition saved successfully');
+      },
+      (error) => {
+        this.alertService.showMsg(error.error.message);
+      }
+    );
+  }
+  public delete(code: string): void {
+    this.http.delete<MyResponse<Competition>>(this.url + '/' + code).subscribe(
+      (response) => {
+        this.competitions.next(this.competitions.getValue().filter((competition) => competition.code !== code));
+        this.alertService.showMsg('Competition deleted successfully');
+      },
+      (error) => {
+        this.alertService.showMsg(error.error.message);
+      }
+    );
+  }
+  public reafresh(code: string): void {
+    this.http.get<MyResponse<Competition>>(this.url + '/' + code).subscribe(
+      (response) => {
+        console.log(response);
+        this.competitions.next(this.competitions.getValue().filter((competition) => competition.code !== code).concat(response.data));
       },
       (error) => {
         this.alertService.showMsg(error.error.message);

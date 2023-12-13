@@ -8,9 +8,8 @@ import { FishPageComponent } from './pages/fish-page/fish-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CompetitionPageComponent } from './pages/competition-page/competition-page.component';
 import { TableModule } from 'primeng/table';
-import { ModalComponent } from './components/modal/modal.component';
 import { ButtonModule } from 'primeng/button';
-import { CompetitionFormComponent } from './components/competition-form/competition-form.component';
+import { CompetitionFormComponent } from './components/forms/competition-form/competition-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -23,16 +22,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { CardCompetitionComponent } from './components/card-competition/card-competition.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
-import { AddMemberComponent } from './components/add-member/add-member.component';
+import { PopUpMessageComponent } from './components/alerts/pop-up-message/pop-up-message.component';
+import { AddMemberComponent } from './components/forms/add-member-form/add-member.component';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PopUpConfirmationComponent } from './components/alerts/pop-up-confirmation/pop-up-confirmation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FishPageComponent,
     CompetitionPageComponent,
-    ModalComponent,
     CompetitionFormComponent,
     NavbarComponent,
     HomepageComponent,
@@ -40,6 +39,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     PaginationComponent,
     PopUpMessageComponent,
     AddMemberComponent,
+    PopUpConfirmationComponent,
   ],
   imports: [
     BrowserModule,

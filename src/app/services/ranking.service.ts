@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import Ranking from '../model/Ranking';
 import { MyResponse } from '../model/MyResponse';
-import { PopUpService } from '../components/pop-up-message/popUpService';
+import { AlertService } from '../components/alerts/alert-service.service';
+import { CompetitionService } from './competition.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RankingService {
-  constructor(private http: HttpClient, private alertService: PopUpService) {
+  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/ranking';
@@ -18,7 +19,6 @@ export class RankingService {
   public findAll(size = 10, page = 0): void {
     this.http.get<Ranking[]>(this.url + '?page=' + page + '&size=' + size).subscribe(
       (response) => {
-        console.log(response);
         this.rankings.next(response);
       }
     );

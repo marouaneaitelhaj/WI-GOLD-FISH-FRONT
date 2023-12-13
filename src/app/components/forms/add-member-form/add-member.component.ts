@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Competition from 'src/app/model/Competition';
 import Member from 'src/app/model/Member';
 import Ranking from 'src/app/model/Ranking';
+import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
 import { RankingService } from 'src/app/services/ranking.service';
 
@@ -13,14 +14,14 @@ import { RankingService } from 'src/app/services/ranking.service';
 })
 export class AddMemberComponent {
   @Input() visible: boolean = false;
-  members : Member[] = [];
+  members: Member[] = [];
   showDialog() {
     this.visible = true;
   }
   @Input() competition: Competition = {} as Competition;
   selectedMembers: Member[] = [];
   @Input() ranking: Ranking = {} as Ranking;
-  constructor(private memberService: MemberService, private rankingService : RankingService) {
+  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService) {
   }
   ngAfterViewInit() {
     this.memberService.members.subscribe(
@@ -29,7 +30,7 @@ export class AddMemberComponent {
       }
     );
   }
-  onSubmit(){
+  onSubmit() {
     this.selectedMembers.forEach(
       (member) => {
         this.ranking.member_id = member.num;
@@ -39,5 +40,6 @@ export class AddMemberComponent {
         this.rankingService.save(this.ranking);
       }
     )
+    this.competitionService.reafresh(this.competition.code);
   }
 }

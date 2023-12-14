@@ -21,18 +21,28 @@ export class CompetitionFormComponent {
       location: [null, Validators.required],
       amount: [null, Validators.required],
     }, {
-      validators: [this.timeRangeValidator]
+      validators: [this.timeValidator]
     });
   }
 
-  timeRangeValidator(competitionForm: FormGroup) {
-    const startTime = competitionForm.get('startTime')?.value;
-    const endTime = competitionForm.get('endTime')?.value;
-
-    if (startTime && endTime && startTime >= endTime) {
-      competitionForm.get('endTime')?.setErrors({ timeRange: true });
-    } else {
-      competitionForm.get('endTime')?.setErrors(null);
+  timeValidator(competitionForm: FormGroup) {
+    const date = new Date(competitionForm?.get('date')?.value);
+    const today = new Date();
+    const threeMonthsFromNow = new Date();
+    threeMonthsFromNow.setMonth(today.getMonth() + 3);
+    if (date < today || date > threeMonthsFromNow) {
+      competitionForm.get('date')?.setErrors({ 'invalidDate': true });
+    } 
+    const startTime = competitionForm?.get('startTime')?.value?.split(':')![0];
+    const endTime = competitionForm?.get('endTime')?.value?.split(':')![0];
+    if (Number(startTime) < 8 || Number(startTime) >= 19) {
+      competitionForm.get('startTime')?.setErrors({ 'invalidStartTime': true });
+    }
+    if (Number(endTime) <= 8 || Number(endTime) >= 20) {
+      competitionForm.get('endTime')?.setErrors({ 'invalidEndTime': true });
+    }
+    if (Number(endTime) - Number(startTime) < 1) {
+      competitionForm.get('endTime')?.setErrors({ 'invalidEndTime': true });
     }
   }
 
@@ -55,5 +65,5 @@ export class CompetitionFormComponent {
   showDialog() {
     this.visible = true;
   }
-  alertProps : AlertProps = new AlertProps();
+  alertProps: AlertProps = new AlertProps();
 }

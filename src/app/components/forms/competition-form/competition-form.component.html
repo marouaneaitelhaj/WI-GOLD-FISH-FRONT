@@ -4,17 +4,29 @@
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
             <input type="date" formControlName="date"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+            <small *ngIf="competitionForm.get('date')?.hasError('invalidDate') && competitionForm.get('date')?.touched"
+                class="text-red-500">
+                Date must be in the future and not more than 3 months from now
+            </small>
         </div>
         <div class="mt-2">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Time</label>
-            <input type="time" formControlName="startTime" 
+            <input type="time" formControlName="startTime"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+            <small
+                *ngIf="competitionForm.get('startTime')?.hasError('invalidStartTime') && competitionForm.get('startTime')?.touched"
+                class="text-red-500">
+                Start time must be after 8:00 AM
+            </small>
         </div>
-        <div *ngIf="competitionForm.get('endTime')?.hasError('timeInvalid')" class="text-red-600">Start time must be before end time</div>
         <div class="mt-2">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End Time</label>
             <input type="time" formControlName="endTime"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+            <small *ngIf="competitionForm.get('endTime')?.hasError('invalidEndTime') && competitionForm.get('endTime')?.touched"
+                class="text-red-500">
+                End time must be after start time and before 8:00 PM
+            </small>
         </div>
         <div class="mt-2">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number Of Participants</label>

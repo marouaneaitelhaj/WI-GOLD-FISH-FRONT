@@ -3,6 +3,7 @@ import Competition from 'src/app/model/Competition';
 import { PopUpMessageComponent } from '../alerts/pop-up-message/pop-up-message.component';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { AlertService } from '../alerts/alert-service.service';
+import Member from 'src/app/model/Member';
 
 @Component({
   selector: 'app-card-competition',
@@ -11,6 +12,7 @@ import { AlertService } from '../alerts/alert-service.service';
 })
 export class CardCompetitionComponent {
   @Input() competition: Competition = {} as Competition;
+  member : Member = {} as Member;
   showDetails: boolean = false;
   showHunting: boolean = false;
   openAddMember: boolean = false;

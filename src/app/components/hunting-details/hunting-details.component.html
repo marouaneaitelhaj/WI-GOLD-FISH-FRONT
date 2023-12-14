@@ -1,7 +1,12 @@
 <div class="flex flex-wrap">
     <div *ngFor="let hunting of competition.huntings" class="flex rounded">
-        <div class="bg-yellow-400  flex flex-col w-28 h-28 justify-center cursor-pointer">
+        <div *ngIf="hunting.member.num==member.num" class="bg-yellow-400 relative m-2 rounded flex flex-col w-28 h-28 justify-center cursor-pointer">
             <span class="text-center">{{hunting.fish.name}}</span>
+            <span class="text-center bg-white rounded-full top-1 left-1 absolute p-2">{{hunting.numberOfFish}}</span>
+        </div>
+        <div  (click)="!huntingform" class="bg-yellow-400 relative  m-2 rounded flex flex-col w-28 h-28 justify-center cursor-pointer">
+            <span class="pi text-3xl flex justify-center align-middle pi-plus"></span>
         </div>
     </div>
 </div>
+<app-add-hunting-form [visible]="huntingform" [competition]="competition" [member]="member"></app-add-hunting-form>

@@ -1,32 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import Member from '../model/Member';
+import Fish from '../model/Fish';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class FishService {
   constructor(private http: HttpClient, private alertService: AlertService) {
     this.findAll();
   }
-  public url = 'http://localhost:8080/member';
-  public members = new BehaviorSubject<Member[]>([]);
-  public pagination = new BehaviorSubject<MyResponse<Member>>({} as MyResponse<Member>);
+  public url = 'http://localhost:8080/fish';
+  public fishs = new BehaviorSubject<Fish[]>([]);
+  public pagination = new BehaviorSubject<MyResponse<Fish>>({} as MyResponse<Fish>);
   public findAll(): void {
-    this.http.get<Member[]>(this.url).subscribe(
+    this.http.get<Fish[]>(this.url).subscribe(
       (response) => {
-        this.members.next(response);
+        this.fishs.next(response);
       }
     );
   }
-  public save(member: Member): void {
-    this.http.post<MyResponse<Member>>(this.url, member).subscribe(
+  public save(fish: Fish): void {
+    this.http.post<MyResponse<Fish>>(this.url, fish).subscribe(
       (response) => {
-        this.members.next(this.members.getValue().concat(response.data));
-        this.alertService.showMsg('Member saved successfully');
+        this.fishs.next(this.fishs.getValue().concat(response.data));
+        this.alertService.showMsg('Fish saved successfully');
       },
       (error) => {
         this.alertService.showMsg(error.error.message);

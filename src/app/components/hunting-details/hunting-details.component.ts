@@ -7,7 +7,8 @@ import Member from 'src/app/model/Member';
   templateUrl: './hunting-details.component.html',
   styleUrls: ['./hunting-details.component.css']
 })
-export class HuntingDetailsComponent {
+export class HuntingDetailsComponent  {
   @Input() competition : Competition = {} as Competition;
   @Input() member : Member = {} as Member;
+  huntingform : boolean = false;
 }

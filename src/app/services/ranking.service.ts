@@ -17,8 +17,8 @@ export class RankingService {
   public url = 'http://localhost:8080/ranking';
   public rankings = new BehaviorSubject<Ranking[]>([]);
   public pagination = new BehaviorSubject<MyResponse<Ranking>>({} as MyResponse<Ranking>);
-  public findAll(size = 10, page = 0): void {
-    this.http.get<Ranking[]>(this.url + '?page=' + page + '&size=' + size).subscribe(
+  public findAll(): void {
+    this.http.get<Ranking[]>(this.url).subscribe(
       (response) => {
         this.rankings.next(response);
       }

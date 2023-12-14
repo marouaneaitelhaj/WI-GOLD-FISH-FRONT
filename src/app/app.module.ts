@@ -30,6 +30,7 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
 import { SidebarModule } from 'primeng/sidebar';
 import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { HuntingDetailsComponent } from './components/hunting-details/hunting-details.component';
+import { AddHuntingFormComponent } from './components/forms/add-hunting-form/add-hunting-form.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { HuntingDetailsComponent } from './components/hunting-details/hunting-de
     MemberCardComponent,
     CompetitionDetailsComponent,
     HuntingDetailsComponent,
+    AddHuntingFormComponent,
   ],
   imports: [
     BrowserModule,

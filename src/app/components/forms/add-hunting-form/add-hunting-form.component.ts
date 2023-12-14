@@ -13,7 +13,7 @@ import { HuntingService } from 'src/app/services/hunting.service';
   templateUrl: './add-hunting-form.component.html',
   styleUrls: ['./add-hunting-form.component.css']
 })
-export class AddHuntingFormComponent {
+export class AddHuntingFormComponent implements OnChanges {
   @Input() visible: boolean = false;
   @Input() member : Member = {} as Member;
   @Input() hunting: Hunting = {} as Hunting;
@@ -28,9 +28,14 @@ export class AddHuntingFormComponent {
   }
   onSubmit() {
     console.log(this.huntingForm.value, this.competition, this.member);
-    // set the competition id and member id
     this.huntingForm.setControl('competition_id', this.fb.control(this.competition.code));
     this.huntingForm.setControl('member_id', this.fb.control(this.member.num));
     this.huntingService.save(this.huntingForm.value);
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.huntingForm.patchValue({
+      // numberOfFish: this.hunting.numberOfFish,
+      fish_id: this.hunting.fish?.name,
+    });
   }
 }

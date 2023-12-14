@@ -5,8 +5,8 @@ import Ranking from "./Ranking";
 export default interface Competition {
     code : string;
     date : Date;
-    startTime : Time;
-    endTime : Time;
+    startTime : Time | string;
+    endTime : Time | string;
     numberOfParticipants : number;
     location : string;
     amount : number;

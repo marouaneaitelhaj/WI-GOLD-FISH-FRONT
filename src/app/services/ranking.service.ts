@@ -5,12 +5,13 @@ import Ranking from '../model/Ranking';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
 import { CompetitionService } from './competition.service';
+import { MemberService } from './member.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RankingService {
-  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService) {
+  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService, public memberService: MemberService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/ranking';
@@ -27,11 +28,23 @@ export class RankingService {
     this.http.post<MyResponse<Ranking>>(this.url, ranking).subscribe(
       (response) => {
         this.rankings.next(this.rankings.getValue().concat(response.data));
-        this.alertService.showMsg('Ranking saved successfully');
+        this.competitionService.reafresh(ranking.competition_id);
       },
       (error) => {
         this.alertService.showMsg(error.error.message);
       }
     );
+  }
+  public findByMemberIdAndCompetitionId(memberId: number, competitionId: string): Ranking {
+    this.http.get<Ranking>(this.url + '/' + memberId + '/' + competitionId).subscribe(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        this.alertService.showMsg(error.error.message);
+        return {} as Ranking;
+      }
+    );
+    return {} as Ranking;
   }
 }

@@ -26,6 +26,7 @@ import { PopUpMessageComponent } from './components/alerts/pop-up-message/pop-up
 import { AddMemberComponent } from './components/forms/add-member-form/add-member.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PopUpConfirmationComponent } from './components/alerts/pop-up-confirmation/pop-up-confirmation.component';
+import { MemberCardComponent } from './components/member-card/member-card.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PopUpConfirmationComponent } from './components/alerts/pop-up-confirmat
     PopUpMessageComponent,
     AddMemberComponent,
     PopUpConfirmationComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -46,10 +46,17 @@ export class CompetitionService {
     );
   }
   public reafresh(code: string): void {
-    this.http.get<MyResponse<Competition>>(this.url + '/' + code).subscribe(
+    this.http.get<Competition>(this.url + '/' + code).subscribe(
       (response) => {
-        console.log(response);
-        this.competitions.next(this.competitions.getValue().filter((competition) => competition.code !== code).concat(response.data));
+        this.competitions.next(this.competitions.getValue().map(
+          (competition) => {
+            if (competition.code === code) {
+              return response;
+            } else {
+              return competition;
+            }
+          }
+        ));
       },
       (error) => {
         this.alertService.showMsg(error.error.message);

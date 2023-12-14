@@ -6,6 +6,7 @@ import Ranking from 'src/app/model/Ranking';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
 import { RankingService } from 'src/app/services/ranking.service';
+import { AlertService } from '../../alerts/alert-service.service';
 
 @Component({
   selector: 'app-add-member',
@@ -21,8 +22,7 @@ export class AddMemberComponent {
   @Input() competition: Competition = {} as Competition;
   selectedMembers: Member[] = [];
   @Input() ranking: Ranking = {} as Ranking;
-  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService) {
-  }
+  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService, private alertService: AlertService) { }
   ngAfterViewInit() {
     this.memberService.members.subscribe(
       (members) => {
@@ -38,8 +38,8 @@ export class AddMemberComponent {
         this.ranking.score = 0;
         this.ranking.rank = 0;
         this.rankingService.save(this.ranking);
-      }
+      },
     )
-    this.competitionService.reafresh(this.competition.code);
+    this.alertService.showMsg('Members added successfully');
   }
 }

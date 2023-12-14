@@ -27,6 +27,10 @@ import { AddMemberComponent } from './components/forms/add-member-form/add-membe
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PopUpConfirmationComponent } from './components/alerts/pop-up-confirmation/pop-up-confirmation.component';
 import { MemberCardComponent } from './components/member-card/member-card.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
+import { HuntingDetailsComponent } from './components/hunting-details/hunting-details.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
     AddMemberComponent,
     PopUpConfirmationComponent,
     MemberCardComponent,
+    CompetitionDetailsComponent,
+    HuntingDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,7 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
     TableModule,
     CardModule,
     ButtonModule,
+    SidebarModule,
     DialogModule,
     InputTextModule,
     CheckboxModule,

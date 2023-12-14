@@ -12,6 +12,7 @@ import { AlertService } from '../alerts/alert-service.service';
 export class CardCompetitionComponent {
   @Input() competition: Competition = {} as Competition;
   showDetails: boolean = false;
+  showHunting: boolean = false;
   openAddMember: boolean = false;
   ngOnInit(): void {
     this.competition.date = new Date(this.competition.date);

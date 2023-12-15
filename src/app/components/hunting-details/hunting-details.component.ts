@@ -11,6 +11,7 @@ import Member from 'src/app/model/Member';
 export class HuntingDetailsComponent  {
   @Input() competition : Competition = {} as Competition;
   @Input() member : Member = {} as Member;
+  @Input() leftTimeText : string = "";
   huntingform : boolean = false;
   huntingObjectForForm : Hunting = {} as Hunting;
 }

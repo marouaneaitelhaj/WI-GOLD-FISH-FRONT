@@ -7,7 +7,7 @@
             <span class="text-center bg-white rounded-full top-1 left-1 absolute p-2">{{hunting.numberOfFish}}</span>
         </div>
     </div>
-    <div (click)="huntingform=!huntingform"
+    <div (click)="huntingform=!huntingform" *ngIf="leftTimeText.includes('to end')"
         class="bg-yellow-400 relative  m-2 rounded flex flex-col w-28 h-28 justify-center cursor-pointer">
         <span class="pi text-3xl flex justify-center align-middle pi-plus"></span>
     </div>

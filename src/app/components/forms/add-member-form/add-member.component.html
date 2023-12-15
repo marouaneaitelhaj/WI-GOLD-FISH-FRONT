@@ -2,7 +2,9 @@
     <div>
         <div class="mt-2 " style="height: 250px;">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
-            <p-multiSelect [(ngModel)]="selectedMembers" [ngClass]="{
+            <p-multiSelect [(ngModel)]="selectedMembers" 
+            (onChange)="onChangeSelectedMembers()"
+             [ngClass]="{
                 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5': true,
                 'border-red-500': selectedMembers.length === 0
             }" [style]="{width: '100%'}" scrollHeight="250px" [options]="members" class="w-full"

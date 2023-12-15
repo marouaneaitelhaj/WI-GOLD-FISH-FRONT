@@ -11,6 +11,7 @@ export class CompetitionDetailsComponent {
   @Input() competition: Competition = {} as Competition;
   @Input() openAddMember: boolean = false;
   @Input() canAddMember: boolean = false;
+  @Input() leftTimeText : string = "";
   @Output() openAddMemberChange = new EventEmitter<Member>();
   setMember(member: Member) {
     this.openAddMemberChange.emit(member);

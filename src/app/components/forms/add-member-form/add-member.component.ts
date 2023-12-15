@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Competition from 'src/app/model/Competition';
 import Member from 'src/app/model/Member';
@@ -20,7 +20,7 @@ export class AddMemberComponent {
     this.visible = true;
   }
   @Input() competition: Competition = {} as Competition;
-  selectedMembers: Member[] = [];
+  @Input() selectedMembers: Member[] = [];
   @Input() ranking: Ranking = {} as Ranking;
   constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService, private alertService: AlertService) { }
   ngAfterViewInit() {
@@ -41,5 +41,19 @@ export class AddMemberComponent {
       },
     )
     this.alertService.showMsg('Members added successfully');
+  }
+  onChangeSelectedMembers() {
+    if (this.selectedMembers.length > (this.competition.numberOfParticipants - this.competition.ranking.length)) {
+      this.alertService.showMsg('Number of participants exceeded');
+      this.selectedMembers.pop();
+    }
+    this.selectedMembers.forEach(
+      (member) => {
+        if (this.competition.ranking.find(ranking => ranking.member.num == member.num)) {
+          this.alertService.showMsg('Member already exists');
+          this.selectedMembers.pop();
+        }
+      },
+    )
   }
 }

@@ -31,6 +31,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { HuntingDetailsComponent } from './components/hunting-details/hunting-details.component';
 import { AddHuntingFormComponent } from './components/forms/add-hunting-form/add-hunting-form.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { PodiumComponent } from './components/podium/podium.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { AddHuntingFormComponent } from './components/forms/add-hunting-form/add
     CompetitionDetailsComponent,
     HuntingDetailsComponent,
     AddHuntingFormComponent,
+    FilterComponent,
+    PodiumComponent,
   ],
   imports: [
     BrowserModule,

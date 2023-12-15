@@ -16,6 +16,7 @@ export class CardCompetitionComponent {
   member: Member = {} as Member;
   showDetails: boolean = false;
   showHunting: boolean = false;
+  openPodium = false; 
   openAddMember: boolean = false;
   leftTime: number = 0;
   leftTimeText: string = '';

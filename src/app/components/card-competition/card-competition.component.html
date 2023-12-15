@@ -1,9 +1,9 @@
 <div
     class="w-full shadow my-5 relative bg-teal-100 rounded overflow-hidden transition-max-h duration-300 ease-in-out max-h-[1000px]"
-    [class.opacity-50]="leftTimeText=='Finished'"
-    [class.pointer-events-none]="leftTimeText=='Finished'"
     >
         <span (click)="onOpenDeleteDialog(competition)"
+        [class.opacity-50]="leftTimeText=='Finished'"
+    [class.pointer-events-none]="leftTimeText=='Finished'"
             class="tracking-wider absolute left-1 bg-teal-400 top-1  pi pi-trash cursor-pointer px-2 text-sm rounded leading-loose mx-2 font-semibold">
         </span>
     <div class="lg:flex w-full">
@@ -41,9 +41,15 @@
             class="flex items-center w-full bg-teal-100 justify-center px-2 py-4">
             <img (click)="showHunting=!showHunting" loading="lazy" width="30"  height="30" decoding="async" data-nimg="1" class="cursor-pointer" style="color:transparent" src="https://cdn-icons-png.flaticon.com/512/92/92400.png?ga=GA1.1.1577156254.1702208925">
         </div> -->
-        <div
+        <div *ngIf="leftTimeText!=='Finished'"
             class="flex items-center w-full bg-teal-100 justify-center px-2 py-4">
             <img (click)="showDetails=!showDetails" loading="lazy" width="30"  height="30" decoding="async" data-nimg="1" class="cursor-pointer" style="color:transparent" src="https://cdn-icons-png.flaticon.com/512/10047/10047996.png?ga=GA1.1.1577156254.1702208925">
+        </div>
+        <div *ngIf="leftTimeText=='Finished'"
+            class="flex items-center w-full bg-teal-100 justify-center px-2 py-4"
+            [class.cursor-pointer]="leftTimeText=='Finished'"
+            >
+            <img (click)="openPodium=!openPodium" loading="lazy" width="30"  height="30" decoding="async" data-nimg="1" class="cursor-pointer" style="color:transparent" src="https://cdn-icons-png.flaticon.com/512/274/274268.png?ga=GA1.1.1577156254.1702208925">
         </div>
     </div>
     <p-sidebar header="Competition Details" [(visible)]="showDetails" [style]="{width: '50vw'}">
@@ -51,5 +57,8 @@
     </p-sidebar>
     <p-sidebar header="Hunting Details" [(visible)]="showHunting" [style]="{width: '50vw'}">
         <app-hunting-details [member]="member" [competition]="competition"></app-hunting-details>
+    </p-sidebar>
+    <p-sidebar header="Podium" [(visible)]="openPodium" [style]="{width: '50vw'}">
+        <app-podium [competition]="competition"></app-podium>
     </p-sidebar>
 </div>

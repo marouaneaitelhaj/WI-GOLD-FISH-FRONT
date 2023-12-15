@@ -4,12 +4,13 @@ import { BehaviorSubject } from 'rxjs';
 import Hunting from '../model/Hunting';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
+import { CompetitionService } from './competition.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HuntingService {
-  constructor(private http: HttpClient, private alertService: AlertService) {
+  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/hunting';
@@ -23,9 +24,10 @@ export class HuntingService {
     );
   }
   public save(hunting: Hunting): void {
-    this.http.post<MyResponse<Hunting>>(this.url, hunting).subscribe(
+    this.http.post<any>(this.url, hunting).subscribe(
       (response) => {
         this.huntings.next(this.huntings.getValue().concat(response.data));
+        this.competitionService.reafresh(response?.data?.competition_id);
         this.alertService.showMsg('Hunting saved successfully');
       },
       (error) => {

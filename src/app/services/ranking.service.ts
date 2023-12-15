@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import Ranking from '../model/Ranking';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
@@ -46,5 +46,8 @@ export class RankingService {
       }
     );
     return {} as Ranking;
+  }
+  public getPodium(competitionId: string): Observable<Ranking[]> {
+    return this.http.get<Ranking[]>(this.url + '/competition/' + competitionId);
   }
 }

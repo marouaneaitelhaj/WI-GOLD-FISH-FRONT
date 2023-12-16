@@ -22,7 +22,7 @@ export class MemberService {
       }
     );
   }
-  public save(member: Member): void {
+  public  save(member: Member): void {
     this.http.post<MyResponse<Member>>(this.url, member).subscribe(
       (response) => {
         this.members.next(this.members.getValue().concat(response.data));

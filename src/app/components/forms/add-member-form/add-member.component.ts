@@ -7,6 +7,7 @@ import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
 import { RankingService } from 'src/app/services/ranking.service';
 import { AlertService } from '../../alerts/alert-service.service';
+import { IndentityDocumentType } from 'src/app/enum/IndentityDocumentType';
 
 @Component({
   selector: 'app-add-member',
@@ -22,7 +23,17 @@ export class AddMemberComponent {
   @Input() competition: Competition = {} as Competition;
   @Input() selectedMembers: Member[] = [];
   @Input() ranking: Ranking = {} as Ranking;
-  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService, private alertService: AlertService) { }
+  memberForm: FormGroup;
+  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService, private alertService: AlertService) {
+    this.memberForm = new FormBuilder().group({
+      name: ['', Validators.required],
+      familyName: ['', Validators.required],
+      accessionDate: ['', Validators.required],
+      nationality: ['', Validators.required],
+      indentityDocumentType: [IndentityDocumentType.CIN, Validators.required],
+      indentityNumber: ['', Validators.required],
+    });
+  }
   ngAfterViewInit() {
     this.memberService.members.subscribe(
       (members) => {
@@ -42,6 +53,9 @@ export class AddMemberComponent {
     )
     this.alertService.showMsg('Members added successfully');
   }
+  onSubmitAddMember(){
+    this.memberService.save(this.memberForm.value);
+  }
   onChangeSelectedMembers() {
     if (this.selectedMembers.length > (this.competition.numberOfParticipants - this.competition.ranking.length)) {
       this.alertService.showMsg('Number of participants exceeded');
@@ -55,5 +69,8 @@ export class AddMemberComponent {
         }
       },
     )
+  }
+  getEnumKeys(): string[] {
+    return Object.keys(IndentityDocumentType);
   }
 }

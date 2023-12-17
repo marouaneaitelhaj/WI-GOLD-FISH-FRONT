@@ -31,7 +31,7 @@ export class CompetitionService {
         this.alertService.showMsg('Competition saved successfully');
       },
       (error) => {
-        this.alertService.showMsg(error.error.message);
+        this.alertService.showMsg(error.error.error);
       }
     );
   }

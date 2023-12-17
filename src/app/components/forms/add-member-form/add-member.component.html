@@ -6,8 +6,8 @@
                 <p-multiSelect [(ngModel)]="selectedMembers" (onChange)="onChangeSelectedMembers()" [ngClass]="{
                     'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full': true,
                     'border-red-500': selectedMembers.length === 0
-                }" [style]="{width: '100%'}" scrollHeight="400px" [options]="members" class="w-full">
-                </p-multiSelect>
+                }" [style]="{width: '100%'}" scrollHeight="400px" [options]="members" class="w-full"
+                    optionLabel="name"></p-multiSelect>
             </div>
             <button type="submit" (click)="onSubmit()"
                 class="text-white mt-2 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"

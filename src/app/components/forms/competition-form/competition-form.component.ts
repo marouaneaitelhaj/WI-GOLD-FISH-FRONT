@@ -38,10 +38,11 @@ export class CompetitionFormComponent {
     if (Number(startTime) < 8 || Number(startTime) >= 19) {
       competitionForm.get('startTime')?.setErrors({ 'invalidStartTime': true });
     }
-    if (Number(endTime) <= 8 || Number(endTime) >= 20) {
+    if (Number(endTime) < 8 || Number(endTime) >= 20) {
       competitionForm.get('endTime')?.setErrors({ 'invalidEndTime': true });
     }
-    if (Number(endTime) - Number(startTime) < 1) {
+    console.log(Number(endTime) , Number(startTime));
+    if (Number(endTime) < Number(startTime)) {
       competitionForm.get('endTime')?.setErrors({ 'invalidEndTime': true });
     }
   }

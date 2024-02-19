@@ -31,7 +31,7 @@ export class RankingService {
         this.competitionService.reafresh(ranking.competition_id);
       },
       (error) => {
-        this.alertService.showMsg(error.error.message);
+        this.alertService.showMsg(error.error.error);
       }
     );
   }

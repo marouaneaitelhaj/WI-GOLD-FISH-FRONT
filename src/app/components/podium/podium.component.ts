@@ -19,7 +19,4 @@ export class PodiumComponent {
       this.podium = podium
     })
   }
-  clicked() {
-    console.log(this.podium)
-  }
 }

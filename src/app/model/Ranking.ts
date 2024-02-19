@@ -1,7 +1,8 @@
-import Competition from "./Competition";
-import Member from "./Member";
+import { Competition } from "./Competition";
+import { Member } from "./Member";
 
-export default interface Ranking {
+
+export type Ranking = {
     id: number;
     rank: number;
     score: number;

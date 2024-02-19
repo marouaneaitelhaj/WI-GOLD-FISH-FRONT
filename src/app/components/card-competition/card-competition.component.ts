@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import Competition from 'src/app/model/Competition';
+import {Competition } from 'src/app/model/Competition';
 import { PopUpMessageComponent } from '../alerts/pop-up-message/pop-up-message.component';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { AlertService } from '../alerts/alert-service.service';
-import Member from 'src/app/model/Member';
+import {Member} from 'src/app/model/Member';
 import { Time } from '@angular/common';
 
 @Component({

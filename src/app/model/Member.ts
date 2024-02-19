@@ -1,4 +1,4 @@
-export default interface Member {
+export type Member = {
     num: number;
     name: string;
     familyName: string;

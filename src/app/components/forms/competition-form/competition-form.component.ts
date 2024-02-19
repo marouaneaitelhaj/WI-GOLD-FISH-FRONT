@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Competition from 'src/app/model/Competition';
+import {Competition } from 'src/app/model/Competition';
 import { CompetitionService } from 'src/app/services/competition.service';
 import AlertProps from '../../alerts/AlertProps';
 

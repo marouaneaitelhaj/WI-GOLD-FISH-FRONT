@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import Competition from 'src/app/model/Competition';
-import Hunting from 'src/app/model/Hunting';
-import Member from 'src/app/model/Member';
+import {Competition } from 'src/app/model/Competition';
+import {Hunting} from 'src/app/model/Hunting';
+import {Member} from 'src/app/model/Member';
 
 @Component({
   selector: 'app-hunting-details',

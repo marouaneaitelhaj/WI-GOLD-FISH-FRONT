@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Ranking from 'src/app/model/Ranking';
+import {Ranking } from 'src/app/model/Ranking';
 
 @Component({
   selector: 'app-member-card',

@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Competition from 'src/app/model/Competition';
-import Member from 'src/app/model/Member';
-import Ranking from 'src/app/model/Ranking';
+import {Competition } from 'src/app/model/Competition';
+import {Member} from 'src/app/model/Member';
+import {Ranking } from 'src/app/model/Ranking';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
 import { RankingService } from 'src/app/services/ranking.service';

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import Fish from '../model/Fish';
+import {Fish} from '../model/Fish';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
 

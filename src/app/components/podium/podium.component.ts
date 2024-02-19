@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import Competition from 'src/app/model/Competition';
-import Ranking from 'src/app/model/Ranking';
+import {Competition } from 'src/app/model/Competition';
+import {Ranking } from 'src/app/model/Ranking';
 import { RankingService } from 'src/app/services/ranking.service';
 
 @Component({

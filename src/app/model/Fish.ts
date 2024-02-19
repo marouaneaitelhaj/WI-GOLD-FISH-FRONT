@@ -1,6 +1,6 @@
-import Level from "./Level";
+import { Level } from "./Level";
 
-export default interface Fish {
+export type Fish = {
     name : string;
     averageWeight : number;
     level : Level;

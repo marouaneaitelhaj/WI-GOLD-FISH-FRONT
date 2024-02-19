@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import Hunting from '../model/Hunting';
+import {Hunting} from '../model/Hunting';
 import { MyResponse } from '../model/MyResponse';
 import { AlertService } from '../components/alerts/alert-service.service';
 import { CompetitionService } from './competition.service';

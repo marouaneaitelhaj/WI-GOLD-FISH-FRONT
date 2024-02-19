@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import Competition from 'src/app/model/Competition';
-import Member from 'src/app/model/Member';
+import {Competition } from 'src/app/model/Competition';
+import {Member} from 'src/app/model/Member';
 
 @Component({
   selector: 'app-competition-details',

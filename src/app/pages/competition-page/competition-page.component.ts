@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CompetitionService } from '../../services/competition.service';
-import Competition from 'src/app/model/Competition';
+import {Competition } from 'src/app/model/Competition';
 import { MyResponse } from 'src/app/model/MyResponse';
 import AlertProps from 'src/app/components/alerts/AlertProps';
 import { Observable } from 'rxjs';

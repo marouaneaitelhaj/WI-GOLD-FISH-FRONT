@@ -1,8 +1,8 @@
 import { Time } from "@angular/common";
-import Hunting from "./Hunting";
-import Ranking from "./Ranking";
+import { Hunting } from "./Hunting";
+import { Ranking } from "./Ranking";
 
-export default interface Competition {
+export type Competition = {
     code : string;
     date : Date;
     startTime : Time | string;

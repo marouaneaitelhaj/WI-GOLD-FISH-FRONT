@@ -33,6 +33,7 @@ import { HuntingDetailsComponent } from './components/hunting-details/hunting-de
 import { AddHuntingFormComponent } from './components/forms/add-hunting-form/add-hunting-form.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { PodiumComponent } from './components/podium/podium.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { PodiumComponent } from './components/podium/podium.component';
     AddHuntingFormComponent,
     FilterComponent,
     PodiumComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

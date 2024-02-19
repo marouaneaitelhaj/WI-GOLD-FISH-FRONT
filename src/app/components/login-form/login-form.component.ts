@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,8 +7,12 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   visible: boolean = true;
+
+  ngOnInit() {
+      
+  }
 
   showDialog() {
     this.visible = true;

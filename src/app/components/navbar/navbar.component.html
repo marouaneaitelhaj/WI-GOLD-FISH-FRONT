@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="flex w-full justify-around">
     <ul class="flex pl-10 justify-items-start">
         <li class="p-5">
             <a routerLink="" class="text-white hover:text-teal-400">Home</a>
@@ -8,6 +8,17 @@
         </li>
         <li class="p-5">
             <a routerLink="" class="text-white hover:text-teal-400">Hunting</a>
+        </li>
+    </ul>
+    <ul class="flex pl-10 justify-items-end">
+        <li class="p-5">
+            <a routerLink="/login" class="text-white hover:text-teal-400 px-5 py-2 border rounded-md">LOGIN</a>
+        </li>
+        <li class="p-5">
+            <a routerLink="/signup" class="text-white hover:text-teal-400 px-5 py-2 border rounded-md">SIGNUP</a>
+        </li>
+        <li>
+            {{(user |async)?.username}}
         </li>
     </ul>
 </div>

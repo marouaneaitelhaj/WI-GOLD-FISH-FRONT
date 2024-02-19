@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TUser } from '../model/TUser';
@@ -8,7 +8,9 @@ import { TUser } from '../model/TUser';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getUserByToken(); 
+  }
 
   public url = 'http://localhost:8080/api/v1/auth';
   public autehnticatedUser = new BehaviorSubject<TUser>({} as TUser);
@@ -20,9 +22,18 @@ export class AuthService {
     );
   }
   public getUserByToken() {
-    return this.http.get<TUser>(this.url + '/user').subscribe(
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<TUser>(this.url + '/user', { headers }).subscribe(
       (user: TUser) => {
         this.autehnticatedUser.next(user);
+      },
+      (error) => {
+          console.log(error.status);
+          if (error.status === 401 || error.status === 403) {
+            localStorage.removeItem('token');
+          }
       }
     )
   }

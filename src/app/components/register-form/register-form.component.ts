@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.css']
 })
-export class LoginFormComponent {
+export class RegisterFormComponent {
   visible: boolean = true;
 
   showDialog() {
@@ -21,6 +21,6 @@ export class LoginFormComponent {
     });
   }
   onSubmit() {
-    this.AuthService.login(this.loginForm.value.username, this.loginForm.value.password);
+    this.AuthService.register(this.loginForm.value.username, this.loginForm.value.password);
   }
 }

@@ -11,6 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent {
   user : Observable<TUser>;
   constructor(private authService : AuthService){
-    this.user = authService.autehnticatedUser;
+    this.user = authService.authenticatedUser;
+  }
+  logout(){
+    this.authService.logout();
   }
 }

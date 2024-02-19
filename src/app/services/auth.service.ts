@@ -9,11 +9,11 @@ import { TUser } from '../model/TUser';
 export class AuthService {
 
   constructor(private http: HttpClient) {
-    this.getUserByToken(); 
+    this.getUserByToken();
   }
 
   public url = 'http://localhost:8080/api/v1/auth';
-  public autehnticatedUser = new BehaviorSubject<TUser>({} as TUser);
+  public authenticatedUser = new BehaviorSubject<TUser>({} as TUser);
   public login(username: string, password: string) {
     return this.http.post<string>(this.url + '/login', { username, password }).subscribe(
       (token: any) => {
@@ -21,29 +21,30 @@ export class AuthService {
       }
     );
   }
-  public getUserByToken() {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get<TUser>(this.url + '/user', { headers }).subscribe(
+  getUserByToken() {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  
+    return this.http.post<TUser>(this.url + '/user', {}, { headers: headers }).subscribe(
       (user: TUser) => {
-        this.autehnticatedUser.next(user);
+        this.authenticatedUser.next(user);
       },
       (error) => {
-          console.log(error.status);
-          if (error.status === 401 || error.status === 403) {
-            localStorage.removeItem('token');
-          }
+        if (error.status === 403 || error.status === 401) {
+          // localStorage.removeItem('token');
+        }
       }
-    )
+    );
   }
+  
   public logout() {
-    return this.http.post(this.url + '/logout', {});
+    localStorage.removeItem('token');
+    this.authenticatedUser.next({} as TUser);
   }
   public register(username: string, password: string) {
     return this.http.post(this.url + '/signup', { username, password }).subscribe(
-      (data:any) => {
+      (data: any) => {
         localStorage.setItem('token', data.token);
+        this.getUserByToken();
       }
     );
   }

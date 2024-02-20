@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FishPageComponent } from './pages/fish-page/fish-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CompetitionPageComponent } from './pages/competition-page/competition-page.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -35,6 +35,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { PodiumComponent } from './components/podium/podium.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { AuthInterceptor } from './services/AuthInterceptor';
 
 
 @NgModule({
@@ -77,7 +78,13 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     CheckboxModule,
     RadioButtonModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

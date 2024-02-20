@@ -11,7 +11,7 @@ import { MemberService } from './member.service';
   providedIn: 'root'
 })
 export class RankingService {
-  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService, public memberService: MemberService) {
+  constructor(private http: HttpClient, private alertService: AlertService, public competitionService: CompetitionService) {
     this.findAll();
   }
   public url = 'http://localhost:8080/ranking';

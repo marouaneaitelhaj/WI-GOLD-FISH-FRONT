@@ -30,7 +30,7 @@ export class AuthService {
       },
       (error) => {
         if (error.status === 403 || error.status === 401) {
-          // localStorage.removeItem('token');
+          localStorage.removeItem('token');
         }
       }
     );

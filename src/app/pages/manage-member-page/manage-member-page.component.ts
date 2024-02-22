@@ -17,6 +17,7 @@ export class ManageMemberPageComponent {
     { name: 'JURY' },
   ];
   update(member:Member, role:string){
+    console.log(member);
     member.role = role;
     this.memberservice.update(member);
   }

@@ -44,7 +44,7 @@ export class AddMemberComponent {
   onSubmit() {
     this.selectedMembers.forEach(
       (member) => {
-        this.ranking.member_id = member.num;
+        this.ranking.member_id = member.id;
         this.ranking.competition_id = this.competition.code;
         this.ranking.score = 0;
         this.ranking.rank = 0;
@@ -63,7 +63,7 @@ export class AddMemberComponent {
     }
     this.selectedMembers.forEach(
       (member) => {
-        if (this.competition.ranking.find(ranking => ranking.member.num == member.num)) {
+        if (this.competition.ranking.find(ranking => ranking.member.id == member.id)) {
           this.alertService.showMsg('Member already exists');
           this.selectedMembers.pop();
         }

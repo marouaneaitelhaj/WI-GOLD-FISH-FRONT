@@ -34,10 +34,10 @@ export class MemberService {
     );
   }
   public update(member: Member): void {
-    this.http.put<MyResponse<Member>>(this.url, member).subscribe(
+    this.http.put<MyResponse<Member>>(this.url + "/" + member.id, member).subscribe(
       (response) => {
         this.members.next(this.members.getValue().map(
-          (m) => m.num === response.data.num ? response.data : m
+          (m) => m.id === response.data.id ? response.data : m
         ));
         this.alertService.showMsg('Member updated successfully');
       },

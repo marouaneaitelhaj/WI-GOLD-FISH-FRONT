@@ -29,7 +29,7 @@ export class AddHuntingFormComponent implements OnChanges {
   onSubmit() {
     console.log(this.huntingForm.value, this.competition, this.member);
     this.huntingForm.setControl('competition_id', this.fb.control(this.competition.code));
-    this.huntingForm.setControl('member_id', this.fb.control(this.member.num));
+    this.huntingForm.setControl('member_id', this.fb.control(this.member.id));
     this.huntingService.save(this.huntingForm.value);
   }
   ngOnChanges(changes: SimpleChanges): void {

@@ -36,6 +36,7 @@ import { PodiumComponent } from './components/podium/podium.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { AuthInterceptor } from './services/AuthInterceptor';
+import { ManageMemberPageComponent } from './pages/manage-member-page/manage-member-page.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AuthInterceptor } from './services/AuthInterceptor';
     PodiumComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    ManageMemberPageComponent,
   ],
   imports: [
     BrowserModule,

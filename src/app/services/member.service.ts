@@ -33,4 +33,17 @@ export class MemberService {
       }
     );
   }
+  public update(member: Member): void {
+    this.http.put<MyResponse<Member>>(this.url, member).subscribe(
+      (response) => {
+        this.members.next(this.members.getValue().map(
+          (m) => m.num === response.data.num ? response.data : m
+        ));
+        this.alertService.showMsg('Member updated successfully');
+      },
+      (error) => {
+        this.alertService.showMsg(error.error.message);
+      }
+    );
+  }
 }

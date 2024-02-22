@@ -6,7 +6,7 @@ import { AuthService } from './services/auth.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class ManagerAuthGuard implements CanActivate {
 
     constructor(private router: Router, private authservice : AuthService) { }
 
@@ -14,8 +14,8 @@ export class AuthGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean {
         // Check if token is present in local storage
-        const token = localStorage.getItem('token') || this.authservice.authenticatedUser.value.token;
-        if (token) {
+        const ismanager = this.authservice.authenticatedUser.value.role === 'MANAGER';
+        if (!ismanager) {
             // Token exists, redirect to homepage
             this.router.navigate(['/']);
             return false;

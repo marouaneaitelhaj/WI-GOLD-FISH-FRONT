@@ -17,10 +17,14 @@ export class RegisterFormComponent {
   constructor(private fb: FormBuilder, private AuthService: AuthService) {
     this.loginForm = this.fb.group({
       username: [''],
+      familyName: [''],
       password: [''],
+      nationality: [''],
+      indentityNumber: [''],
+      indentityDocumentType: [''],
     });
   }
   onSubmit() {
-    this.AuthService.register(this.loginForm.value.username, this.loginForm.value.password);
+    this.AuthService.register(this.loginForm);
   }
 }

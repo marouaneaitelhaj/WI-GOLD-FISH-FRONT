@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 403) {
-          localStorage.removeItem('token');
+          // localStorage.removeItem('token');
         }
         return throwError(error);
       })

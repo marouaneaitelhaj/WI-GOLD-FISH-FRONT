@@ -21,6 +21,11 @@
             <p class="text-white hover:text-teal-400 px-5 py-2 border rounded-md">
                 {{(user |async)?.username}}</p>
         </li>
+        <li routerLink="/managemember"  class="p-5 cursor-pointer" *ngIf="(user |async)?.role == 'MANAGER'">
+            <p class="text-white hover:text-teal-400 px-5 py-2 border rounded-md">
+                Manage Members
+            </p>
+        </li>
         <li class="p-5 cursor-pointer"  *ngIf="(user |async)?.username" (click)="logout()">
             <p class="text-white hover:text-teal-400 px-5 py-2 border rounded-md">
                 LOGOUT

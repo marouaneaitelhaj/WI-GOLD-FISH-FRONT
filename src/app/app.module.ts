@@ -37,6 +37,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { AuthInterceptor } from './services/AuthInterceptor';
 import { ManageMemberPageComponent } from './pages/manage-member-page/manage-member-page.component';
+import { ErrorPageComponent } from './component/error-page/error-page.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ManageMemberPageComponent } from './pages/manage-member-page/manage-mem
     LoginFormComponent,
     RegisterFormComponent,
     ManageMemberPageComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

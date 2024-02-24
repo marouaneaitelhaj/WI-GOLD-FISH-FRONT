@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {Competition } from 'src/app/model/Competition';
 import {Member} from 'src/app/model/Member';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-competition-details',
@@ -16,4 +17,5 @@ export class CompetitionDetailsComponent {
   setMember(member: Member) {
     this.openAddMemberChange.emit(member);
   }
+  constructor(public authservice:AuthService) { }
 }
